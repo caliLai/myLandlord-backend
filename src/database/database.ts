@@ -1,10 +1,10 @@
 import mysql2 from "mysql2";
 
 const creds:any = {
-	host: "localhost",
-    user: "root",
-    password: "Avocado_21",
-    database: "lab_example",
+	host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASS || "Avocado_21",
+    database: process.env.DB_SCHEMA || "lab_example",
     multipleStatements: false,
     namedPlaceholders: true
 };
