@@ -5,6 +5,7 @@ import databaseConnection from "./database/database";
 
 
 const router = express();
+const PORT = process.env.PORT || 8989;
 
 router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
@@ -24,4 +25,4 @@ router.get("/hey", (req, res) => {
 })
 
 const app = http.createServer(router);
-app.listen(3080, () => console.log("listening on 3080"));
+app.listen(PORT, () => console.log(`listening on ${PORT}`));
