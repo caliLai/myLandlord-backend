@@ -1,4 +1,5 @@
-import mysql2 from "mysql2";
+// import mysql2 from "mysql2";
+import * as mysql2 from "mysql2/promise";
 
 const creds:any = {
 	host: process.env.DB_HOST || "localhost",
