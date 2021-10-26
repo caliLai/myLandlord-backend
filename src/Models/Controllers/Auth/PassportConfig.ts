@@ -7,7 +7,9 @@
 import passport from "passport";
 import { IVerifyOptions, IStrategyOptions, Strategy as LocalStrategy } from "passport-local";
 
-export default class Passport {
+import Login from "./Login";
+
+export default class PassportConfig {
 	private static _user:IUser;
 	private static _localStrategy:LocalStrategy;
 	private static _strategyOptions: IStrategyOptions = {
@@ -16,7 +18,7 @@ export default class Passport {
   	};
 
 	constructor() {
-
+		PassportConfig._localStrategy = new LocalStrategy()
 	}
 
 	private static serializeUser(user:IUser, done):void {
