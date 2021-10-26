@@ -5,7 +5,7 @@ import databaseConnection from "./database/database";
 
 
 const router = express();
-const PORT = process.env.PORT || 8989;
+const PORT = process.env.PORT || 3080;
 
 router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
