@@ -21,7 +21,7 @@ export default class Login {
 	TODO: add params to prevent injections
 	*******/
 	// public async findUserByEmail(email:string, password:string):Promise<void> {
-	public async findUserByEmail(email:string, password:string):Promise<IUser|string> {
+	public async findUserByEmail(email:string, password:string):Promise<IUser> {
 		let query:string = `SELECT * FROM users WHERE email = :email`;
 		let params = {email: email};
 
@@ -30,11 +30,13 @@ export default class Login {
 				if(err){reject("Something's wrong with MySQL")}
 				// resolve(results[0]);
 				if(!res[0]) {
+					console.log("oof");
 					reject("Username or password incorrect");
 				} else {
 					if(res[0].password === password) {
 						resolve(res[0] as IUser);
 					}
+					console.log("oof");
 					reject("Username or password incorrect");
 				}
 			})
