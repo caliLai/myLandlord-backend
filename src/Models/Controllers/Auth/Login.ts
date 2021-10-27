@@ -61,3 +61,4 @@ export default class Login {
 
 // let a = new Login();
 // a.findUserByEmail("tester@tester.test", "tester").then(e => console.log(e)).catch(e => console.log(e));
+// a.findUserById(5).then(e => console.log(e)).catch(e => console.log(e));

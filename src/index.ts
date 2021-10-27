@@ -1,17 +1,33 @@
 import express from "express";
+import session from "express-session";
 import * as http from "http";
 import passport from "passport";
 
 import AuthController from "./Models/Controllers/Auth/AuthController";
+import PassportConfig from  "./Models/Controllers/Auth/PassportConfig";
+
 // import path from "path";
 // import databaseConnection from "./database/database";
 
 
 const router = express();
 const PORT = process.env.PORT || 3080;
+router.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
 router.use(passport.initialize());
-// router.use(passport.session());
-import "./Models/Controllers/Auth/PassportConfig";
+router.use(passport.session());
+new PassportConfig();
+// import "./Models/Controllers/Auth/PassportConfig";
 
 const fuck = new AuthController();
 router.use(express.static("../build"));
