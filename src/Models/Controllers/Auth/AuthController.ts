@@ -15,8 +15,10 @@ class AuthController {
 
 	public path = "/auth";
 	public router = express.Router();
+	// public static pass;
 
 	constructor() {
+		// new PassportConfig();
 		this.router.post(`${this.path}/login`, this.login);
 	}
 
@@ -24,27 +26,24 @@ class AuthController {
 	// refer to http://www.passportjs.org/docs/authenticate/
 	// "custom callback" section
 	private login(req:express.Request, res:express.Response, next:express.NextFunction) {
-		passport.authenticate("local", function (err, user) {
-      if (err) {
-        return next(err);
-      }
-      req.login(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-      });
-      return res.send("hiasfasdf");
-    })(req, res, next);
 
-		// passport.authenticate('local', function(err, user, info) {
-		// 	if (err) { return next(err); }
-		// 	console.log(user);
-		// 	if (!user) { return res.end("Invalid creds"); }
-		// 	req.login(user, function(err) {
-		// 		if (err) { return next(err); }
-		// 	return res.end("Invalid credentials");
-		// 	});
-		// })(req, res, next);
+
+		passport.authenticate('local', function(err, user, info) {
+			if (err) {
+				return next(err);
+			}
+			console.log(user);
+			if (!user) {
+				return res.end("no user");
+			}
+			req.login(user, function(err) {
+				if (err) {
+					return next(err);
+					// return res.end("broken");
+				}
+				return res.end("idk what happened but its  not broken");
+			});
+		})(req, res, next);
 	}
 
 	private register() {
