@@ -34,10 +34,12 @@ export default class Login {
 					reject("Username or password incorrect");
 				} else {
 					if(res[0].password === password) {
+						console.log("not oof");
 						resolve(res[0] as IUser);
+					} else {
+						console.log("oof2");
+						reject("Username or password incorrect");
 					}
-					console.log("oof");
-					reject("Username or password incorrect");
 				}
 			})
 		})

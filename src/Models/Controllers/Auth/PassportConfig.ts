@@ -12,7 +12,7 @@ import Login from "./Login";
 // import IUser from "../../Interfaces/IUser";
 
 class PassportConfig {
-	private static _login;
+	private static _login = new Login();
 	// private static _user:IUser;
 	private static _localStrategy:LocalStrategy;
 	private static _strategyOptions: IStrategyOptions = {
@@ -21,14 +21,15 @@ class PassportConfig {
   	};
 
 	constructor() {
-		PassportConfig._login = new Login();
+		// PassportConfig._login = new Login();
+
 		console.log("I just need confirmation pls");
+
 		PassportConfig._localStrategy = new LocalStrategy(
 			PassportConfig._strategyOptions,
 			(email, password, done) => {
 				PassportConfig._login.findUserByEmail(email, password)
 					.then((user) => {
-						console.log(user);
 						done(null, user);
 					})
 					.catch((err) => {
@@ -43,20 +44,15 @@ class PassportConfig {
 	}
 
 	private static serializeUser(user:IUser, done):void {
-		done(null, user.id);
+		// console.log("OH MY FUCKING GOD", user.user_id);
+		done(null, user.user_id);
 	}
 
-	private static async deserializeUser(id:number, done):Promise<void> {
+	private static deserializeUser(id:number, done):void {
 		console.log("got here");
 		PassportConfig._login.findUserById(id)
 			.then(user => done(null, user))
 			.catch(err => done({message: "user not found"}, null));
-		// try {
-		//     const user = await this._login.findUserById(id);
-		//     return done(null, user);
-	    // } catch (error) {
-	    //   	done({ message: "user not found" }, null);
-	    // }
   	}
 
 }

@@ -12,6 +12,7 @@ import PassportConfig from  "./Models/Controllers/Auth/PassportConfig";
 
 const router = express();
 const PORT = process.env.PORT || 3080;
+router.use(express.json())
 router.use(
   session({
     secret: "secret",
@@ -29,10 +30,10 @@ router.use(passport.session());
 new PassportConfig();
 // import "./Models/Controllers/Auth/PassportConfig";
 
-const fuck = new AuthController();
+const auth = new AuthController();
 router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
-router.use("/", fuck.router);
+router.use("/", auth.router);
 
 router.get("/hi", (req, res) => {
 	res.send("hi");
