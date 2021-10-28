@@ -9,7 +9,7 @@ import { IVerifyOptions, IStrategyOptions, Strategy as LocalStrategy } from "pas
 import IUser from "../../Interfaces/IUser"
 
 import Login from "./Login";
-import IUser from "../../Interfaces/IUser";
+// import IUser from "../../Interfaces/IUser";
 
 class PassportConfig {
 	private static _login;

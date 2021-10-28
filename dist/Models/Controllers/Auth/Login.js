@@ -31,12 +31,14 @@ class Login {
                 }
                 // resolve(results[0]);
                 if (!res[0]) {
+                    console.log("oof");
                     reject("Username or password incorrect");
                 }
                 else {
                     if (res[0].password === password) {
                         resolve(res[0]);
                     }
+                    console.log("oof");
                     reject("Username or password incorrect");
                 }
             });
@@ -61,4 +63,5 @@ class Login {
 exports.default = Login;
 // let a = new Login();
 // a.findUserByEmail("tester@tester.test", "tester").then(e => console.log(e)).catch(e => console.log(e));
+// a.findUserById(5).then(e => console.log(e)).catch(e => console.log(e));
 //# sourceMappingURL=Login.js.map
