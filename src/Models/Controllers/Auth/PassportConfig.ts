@@ -6,6 +6,7 @@
 
 import passport from "passport";
 import { IVerifyOptions, IStrategyOptions, Strategy as LocalStrategy } from "passport-local";
+import IUser from "../../Interfaces/IUser"
 
 import Login from "./Login";
 
