@@ -14,7 +14,28 @@ class AuthController {
     constructor() {
         this.path = "/auth";
         this.router = express_1.default.Router();
+        this.register = async (req, res, next) => {
+            // ALRIGHT WE GOING TO CREATE A ANEW FUCKING USER. 
+            let newUser = {
+                id: (Date.now() + Math.floor(Math.random() * 10)),
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
+                is_landlord: req.body.is_landlord
+            };
+            //need to add user to the database but fuck im tired so im going to sleep 
+            this._auth_service.createUser(newUser)
+                .then((user) => {
+                console.log(`${user.email} has been registered`);
+                return res.send("EWGW");
+            })
+                .catch((userExists) => {
+                return next(userExists);
+            });
+        };
         this.router.post(`${this.path}/login`, this.login);
+        this.router.post(`${this.path}/register`, this.register);
     }
     // callback function for authenticating login
     // refer to http://www.passportjs.org/docs/authenticate/
@@ -40,8 +61,6 @@ class AuthController {
         // 	return res.end("Invalid credentials");
         // 	});
         // })(req, res, next);
-    }
-    register() {
     }
 }
 exports.default = AuthController;
