@@ -9,9 +9,11 @@ import { IVerifyOptions, IStrategyOptions, Strategy as LocalStrategy } from "pas
 import IUser from "../../Interfaces/IUser"
 
 import Login from "./Login";
+import IUser from "../../Interfaces/IUser";
 
-export default class PassportConfig {
-	private static _user:IUser;
+class PassportConfig {
+	private static _login;
+	// private static _user:IUser;
 	private static _localStrategy:LocalStrategy;
 	private static _strategyOptions: IStrategyOptions = {
 	    usernameField: "email",
@@ -19,15 +21,46 @@ export default class PassportConfig {
   	};
 
 	constructor() {
-		PassportConfig._localStrategy = new LocalStrategy()
+		PassportConfig._login = new Login();
+		console.log("I just need confirmation pls");
+		PassportConfig._localStrategy = new LocalStrategy(
+			PassportConfig._strategyOptions,
+			(email, password, done) => {
+				PassportConfig._login.findUserByEmail(email, password)
+					.then((user) => {
+						console.log(user);
+						done(null, user);
+					})
+					.catch((err) => {
+						console.log("is this part even running");
+						done(null, false);
+					});
+			}
+		)
+		passport.use(PassportConfig._localStrategy);
+		passport.serializeUser(PassportConfig.serializeUser);
+		passport.deserializeUser(PassportConfig.deserializeUser);
 	}
 
 	private static serializeUser(user:IUser, done):void {
-		done(null, user.email);
+		done(null, user.id);
 	}
 
-	private static deserializeUser(email:string, done):void {
-
-	}
+	private static async deserializeUser(id:number, done):Promise<void> {
+		console.log("got here");
+		PassportConfig._login.findUserById(id)
+			.then(user => done(null, user))
+			.catch(err => done({message: "user not found"}, null));
+		// try {
+		//     const user = await this._login.findUserById(id);
+		//     return done(null, user);
+	    // } catch (error) {
+	    //   	done({ message: "user not found" }, null);
+	    // }
+  	}
 
 }
+
+// let config = new PassportConfig();
+// export default config;
+export default PassportConfig;
