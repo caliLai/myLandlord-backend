@@ -3,7 +3,7 @@
 */
 
 interface IUser {
-	user_id:number;
+	user_id?:number;
 	email:string;
 	password:string;
 	firstName:string;

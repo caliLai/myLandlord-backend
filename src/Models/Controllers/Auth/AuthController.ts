@@ -17,7 +17,7 @@ class AuthController {
 
 	public path = "/auth";
 	public router = express.Router();
-	private _auth_service: Register;
+	private _auth_service = new Register();
 	// public static pass;
 
 
@@ -52,23 +52,22 @@ class AuthController {
 	}
 
 	private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-		// ALRIGHT WE GOING TO CREATE A ANEW FUCKING USER. 
-		let newUser: IUser ={
-			user_id: (Date.now() + Math.floor(Math.random() * 10)),
+		// ALRIGHT WE GOING TO CREATE A NEW FUCKING USER.
+		let newUser: IUser = {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			email: req.body.email,
 			password: req.body.password,
 			is_landlord: req.body.is_landlord
 		}
-		//need to add user to the database but fuck im tired so im going to sleep 
+		//need to add user to the database but fuck im tired so im going to sleep
 		this._auth_service.createUser(newUser)
 		.then((user) => {
-			console.log(`${user.email} has been registered`);
-			return res.send("EWGW")
+			console.log(`${newUser.email} has been registered`);
+			return res.send("EWGW");
 		})
 		.catch((userExists) => {
-			return next(userExists)
+			return next(userExists);
 		})
 	}
 
