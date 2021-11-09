@@ -5,7 +5,7 @@
 interface IUser {
 	user_id?:number;
 	email:string;
-	password:string;
+	password?:string;
 	firstName:string;
 	lastName:string;
 	is_landlord:boolean;
