@@ -1,3 +1,7 @@
+/*
+	utilities for writing reviews and ratings
+*/
+
 import databaseConnection from "../../../database/database";
 import IReview from "../../Interfaces/Profile/IReview";
 
@@ -12,6 +16,7 @@ export default class Review {
 	}
 
 	public create(review:IReview):void {
-
+		let query:string =
+		`INSERT INTO reviews`
 	}
 }

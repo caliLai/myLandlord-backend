@@ -8,7 +8,7 @@ import IProfile from "../../Interfaces/Profile/IProfile";
 export default class View {
 
 
-	public async retrieve(userId:number):Promise<IProfile|string> {
+	public async retrieve(userId:number):Promise<IProfile> {
 		return new Promise((resolve, reject) => {
 
 			let query:string = "SELECT firstname, lastname, email, is_landlord, profile_image FROM users WHERE user_id = :userId";
@@ -21,12 +21,10 @@ export default class View {
 				if(!res[0]) {
 					reject("User does not exist");
 				}
-				resolve(res[0]);
+				// console.log(typeof(res[0]));
+				resolve(res[0] as IProfile);
 			})
 		})
 
 	}
 }
-
-let a = new View();
-a.retrieve(5).then(e => console.log(e)).catch(e => console.log(e));

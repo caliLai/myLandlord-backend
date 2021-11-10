@@ -30,6 +30,7 @@ class PassportConfig {
 			(email, password, done) => {
 				PassportConfig._login.findUserByEmail(email, password)
 					.then((user) => {
+						// console.log("yep");
 						done(null, user);
 					})
 					.catch((err) => {
@@ -51,7 +52,10 @@ class PassportConfig {
 	private static deserializeUser(id:number, done):void {
 		console.log("got here");
 		PassportConfig._login.findUserById(id)
-			.then(user => done(null, user))
+			.then((user) => {
+				console.log("inside deserializeUser: ", user);
+				done(null, user);
+			})
 			.catch(err => done({message: "user not found"}, null));
   	}
 

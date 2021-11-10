@@ -2,6 +2,7 @@ import express from "express";
 import session from "express-session";
 import * as http from "http";
 import passport from "passport";
+import cors from "cors";
 
 import PassportConfig from  "./Models/Controllers/Auth/PassportConfig";
 import AuthController from "./Models/Controllers/Auth/AuthController";
@@ -13,7 +14,9 @@ import ProfileController from "./Models/Controllers/Profile/ProfileController";
 
 const router = express();
 const PORT = process.env.PORT || 3080;
-router.use(express.json())
+router.use(express.json());
+
+//--------PASSPORT STUFF---------//
 router.use(
   session({
     secret: "secret",
@@ -28,28 +31,26 @@ router.use(
 );
 router.use(passport.initialize());
 router.use(passport.session());
+router.use(cors());
+router.options('*', cors());
 new PassportConfig();
-// import "./Models/Controllers/Auth/PassportConfig";
+//--------------------------------//
 
+//-------ROUTE CONTROLLERS-------------//
 const auth = new AuthController();
 const profile = new ProfileController();
-router.use(express.static("../build"));
+
+//-------------------------------//
+
+// router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
 router.use("/", auth.router);
+router.use("/", profile.router);
 
 router.get("/hi", (req, res) => {
 	res.send("hi");
 })
 
-// router.get("/hey", (req, res) => {
-// 	databaseConnection.query("SELECT * FROM users", (err:Error, res) => {
-// 		if(err){throw err}
-// 		else {
-// 			console.log(res);
-// 		}
-// 	});
-// 	res.send("hey");
-// })
 
 const app = http.createServer(router);
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
