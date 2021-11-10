@@ -64,7 +64,7 @@ class AuthController {
 		this._auth_service.createUser(newUser)
 		.then((user) => {
 			console.log(`${newUser.email} has been registered`);
-			return res.send("EWGW");
+			return res.send("Welcome");
 		})
 		.catch((userExists) => {
 			return next(userExists);

@@ -1,4 +1,4 @@
-import IRating from "./IReview";
+import IRating from "./IRating";
 
 interface IReview {
 	review_id?:number;
@@ -17,3 +17,5 @@ interface IReview {
 	tendant_id:number;
 	landlord_id:number;
 }
+
+export default IReview;

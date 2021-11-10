@@ -9,7 +9,7 @@ interface IUser {
 	firstName:string;
 	lastName:string;
 	is_landlord:boolean;
-	profilePic?:string;
+	profile_image?:string;
 	phone_number?:number;
 }
 

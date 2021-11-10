@@ -1,5 +1,5 @@
 import databaseConnection from "../../../database/database";
-
+import IReview from "../../Interfaces/Profile/IReview";
 
 export default class Review {
 	//PRIVATE
@@ -11,7 +11,7 @@ export default class Review {
 
 	}
 
-	public submit():void {
+	public create(review:IReview):void {
 
 	}
 }

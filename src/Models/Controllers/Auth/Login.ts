@@ -18,7 +18,6 @@ export default class Login {
 	find users via their email and verifies password. If correct,
 	return user
 
-	TODO: add params to prevent injections
 	*******/
 	// public async findUserByEmail(email:string, password:string):Promise<void> {
 	public async findUserByEmail(email:string, password:string):Promise<IUser> {

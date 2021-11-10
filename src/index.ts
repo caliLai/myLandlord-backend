@@ -3,8 +3,9 @@ import session from "express-session";
 import * as http from "http";
 import passport from "passport";
 
-import AuthController from "./Models/Controllers/Auth/AuthController";
 import PassportConfig from  "./Models/Controllers/Auth/PassportConfig";
+import AuthController from "./Models/Controllers/Auth/AuthController";
+import ProfileController from "./Models/Controllers/Profile/ProfileController";
 
 // import path from "path";
 // import databaseConnection from "./database/database";
@@ -31,6 +32,7 @@ new PassportConfig();
 // import "./Models/Controllers/Auth/PassportConfig";
 
 const auth = new AuthController();
+const profile = new ProfileController();
 router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
 router.use("/", auth.router);
