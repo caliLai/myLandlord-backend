@@ -31,8 +31,10 @@ router.use(
 );
 router.use(passport.initialize());
 router.use(passport.session());
-router.use(cors());
-router.options('*', cors());
+
+//------REMOVE BEFORE PRODUCTION------//
+router.use(cors({credentials: true}));
+router.options('*', cors({credentials: true}));
 new PassportConfig();
 //--------------------------------//
 
@@ -50,6 +52,12 @@ router.use("/", profile.router);
 router.get("/hi", (req, res) => {
 	res.send("hi");
 })
+
+// sam did this:
+// router.get("/fuckyoujeremy", (req, res) => {
+// 	console.log(req.headers)
+// 	res.send("middle finger emoji")
+// })
 
 
 const app = http.createServer(router);
