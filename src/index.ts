@@ -32,9 +32,13 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
-//------REMOVE BEFORE PRODUCTION------//
-router.use(cors({credentials: true}));
-router.options('*', cors({credentials: true}));
+//------REMOVE BEFORE PRODUCTION ???------//
+router.use(cors({
+	origin: "*",
+	credentials: true,
+	exposedHeaders: ['set-cookie']
+}));
+// router.options('*', cors({credentials: true}));
 new PassportConfig();
 //--------------------------------//
 
