@@ -5,11 +5,11 @@
 interface IUser {
 	user_id?:number;
 	email:string;
-	password:string;
-	firstName:string;
-	lastName:string;
+	password?:string;
+	firstname:string;
+	lastname:string;
 	is_landlord:boolean;
-	profilePic?:string;
+	profile_image?:string;
 	phone_number?:number;
 }
 

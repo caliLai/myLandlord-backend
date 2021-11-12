@@ -18,7 +18,6 @@ export default class Login {
 	find users via their email and verifies password. If correct,
 	return user
 
-	TODO: add params to prevent injections
 	*******/
 	// public async findUserByEmail(email:string, password:string):Promise<void> {
 	public async findUserByEmail(email:string, password:string):Promise<IUser> {
@@ -45,8 +44,8 @@ export default class Login {
 		})
 	}
 
-	public async findUserById(id:number):Promise<IUser|string> {
-		let query:string = `SELECT * from users where user_id = :userId`;
+	public async findUserById(id:number):Promise<IUser> {
+		let query:string = `SELECT * FROM users WHERE user_id = :userId`;
 		let params = {userId: id};
 
 		return new Promise((resolve, reject) => {
@@ -55,6 +54,7 @@ export default class Login {
 				if(!res[0]) {
 					reject("User does not exist");
 				}
+				// console.log(res);
 				resolve(res[0] as IUser);
 			})
 		})
