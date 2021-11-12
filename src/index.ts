@@ -16,7 +16,7 @@ const router = express();
 const PORT = process.env.PORT || 3080;
 router.use(express.json());
 
-//--------PASSPORT STUFF---------//
+//--------PASSPORT/SESSION STUFF---------//
 router.use(
   session({
     secret: "secret",
@@ -44,6 +44,7 @@ new PassportConfig();
 
 //-------ROUTE CONTROLLERS-------------//
 const auth = new AuthController();
+const profile = new ProfileController();
 // router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
 router.use("/", auth.router);
@@ -51,7 +52,7 @@ router.use("/", profile.router);
 
 router.get("/hi", (req, res) => {
 	console.log(req.user);
-	res.send("hi");
+	res.send("user: " + req.user);
 })
 
 // sam did this:
