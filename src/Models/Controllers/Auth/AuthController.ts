@@ -34,19 +34,22 @@ class AuthController {
 
 
 		passport.authenticate('local', function(err, user, info) {
+			// console.log(user);
 			if (err) {
 				return next(err);
 			}
-			console.log(user);
+			// console.log(user);
 			if (!user) {
 				return res.end("no user");
 			}
 			req.login(user, function(err) {
+				// console.log(user);
 				if (err) {
+					// console.log("broken");
 					return next(err);
 					// return res.end("broken");
 				}
-				return res.end("idk what happened but its  not broken");
+				return res.end("idk what happened but its not broken");
 			});
 		})(req, res, next);
 	}
@@ -54,17 +57,17 @@ class AuthController {
 	private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
 		// ALRIGHT WE GOING TO CREATE A NEW FUCKING USER.
 		let newUser: IUser = {
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
 			email: req.body.email,
 			password: req.body.password,
 			is_landlord: req.body.is_landlord
 		}
 		//need to add user to the database but fuck im tired so im going to sleep
 		this._auth_service.createUser(newUser)
-		.then((user) => {
+		.then(() => {
 			console.log(`${newUser.email} has been registered`);
-			return res.send("EWGW");
+			return res.send("Welcome");
 		})
 		.catch((userExists) => {
 			return next(userExists);

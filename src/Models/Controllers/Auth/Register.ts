@@ -30,20 +30,20 @@ export default class Register {
 
             // let query:string = `
             // INSERT into user
-            // (firstName, lastName, email, salt, is_landlord)
+            // (firstname, lastname, email, salt, is_landlord)
             // VALUES
-            // (:firstName, :lastName, :email, sha2(UUID(), 512), :is_landlord);
+            // (:firstname, :lastname, :email, sha2(UUID(), 512), :is_landlord);
             // `
             let query:string = `
             INSERT into users
-            (firstName, lastName, email, password, is_landlord)
+            (firstname, lastname, email, password, is_landlord)
             VALUES
-            (:firstName, :lastName, :email, :password, :is_landlord);
+            (:firstname, :lastname, :email, :password, :is_landlord);
             `;
 
             let params = {
-                firstName: profile.firstName,
-                lastName: profile.lastName,
+                firstname: profile.firstname,
+                lastname: profile.lastname,
                 email: profile.email,
                 password: profile.password,
                 is_landlord: profile.is_landlord,
@@ -77,8 +77,8 @@ export default class Register {
 // let user:IUser = {
 // 	email:"hi",
 // 	password:"hi",
-// 	firstName:"hi",
-// 	lastName:"hi",
+// 	firstname:"hi",
+// 	lastname:"hi",
 // 	is_landlord: true
 //
 // }
