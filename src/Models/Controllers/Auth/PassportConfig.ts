@@ -30,6 +30,7 @@ class PassportConfig {
 			(email, password, done) => {
 				PassportConfig._login.findUserByEmail(email, password)
 					.then((user) => {
+						console.log("passportConfig found a user");
 						done(null, user);
 					})
 					.catch((err) => {

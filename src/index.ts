@@ -31,11 +31,12 @@ new PassportConfig();
 // import "./Models/Controllers/Auth/PassportConfig";
 
 const auth = new AuthController();
-router.use(express.static("../build"));
+// router.use(express.static("../build"));
 // router.use(express.static(path.join(__dirname,"build")));
 router.use("/", auth.router);
 
 router.get("/hi", (req, res) => {
+	console.log(req.user);
 	res.send("hi");
 })
 

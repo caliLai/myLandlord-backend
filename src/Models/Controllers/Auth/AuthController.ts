@@ -37,15 +37,17 @@ class AuthController {
 			if (err) {
 				return next(err);
 			}
-			console.log(user);
 			if (!user) {
+				console.log("authcontroller no user found");
 				return res.end("no user");
 			}
 			req.login(user, function(err) {
 				if (err) {
+					console.log("authController error w user")
 					return next(err);
 					// return res.end("broken");
 				}
+				console.log("authController well i assumed everything worked");
 				return res.end("idk what happened but its  not broken");
 			});
 		})(req, res, next);
