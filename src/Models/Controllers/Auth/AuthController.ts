@@ -25,6 +25,7 @@ class AuthController {
 		// new PassportConfig();
 		this.router.post(`${this.path}/login`, this.login);
 		this.router.post(`${this.path}/register`, this.register);
+		this.router.post(`${this.path}/logout` , this.logout);
 	}
 
 	// callback function for authenticating login
@@ -54,6 +55,13 @@ class AuthController {
 		})(req, res, next);
 	}
 
+	private logout(req:express.Request, res:express.Response, next:express.NextFunction) {
+		// This logs the user out
+		req.logout();
+		// .redirect will then take the user to the homepage
+  		res.redirect('/');
+	}
+
 	private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
 		// ALRIGHT WE GOING TO CREATE A NEW FUCKING USER.
 		let newUser: IUser = {
@@ -76,6 +84,5 @@ class AuthController {
 
 }
 
-// it is 3:03 and i told calista i will got to sleep.
 
 export default AuthController;
