@@ -7,7 +7,6 @@ import IProfile from "../../Interfaces/Profile/IProfile";
 
 export default class View {
 
-
 	public async retrieve(userId:number):Promise<IProfile> {
 		return new Promise((resolve, reject) => {
 
