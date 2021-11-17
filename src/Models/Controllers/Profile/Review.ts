@@ -77,19 +77,38 @@ export default class Review {
 			})
 		})
 	}
+
+	public count(id:number):Promise<string|number> {
+		let query:string = `
+		SELECT COUNT(*) as count
+		FROM reviews
+		WHERE landlord_id = :id`;
+		let params = {id:id};
+
+		return new Promise((resolve, reject) => {
+			databaseConnection.query(query, params, (err, res) => {
+				if(err){reject("Something wrong with the database")}
+				if(res[0].count == 0) {
+					resolve("No reviews")
+				}
+				resolve(res[0].count);
+			})
+		})
+	}
 }
 
-let a = new Review();
-let r:IReview = {
-	content:"new review",
-	cleanliness_rating:3,
-	communication_rating:4,
-	maintenance_rating: 5,
-	availability_rating:1,
-	is_recommended:true,
-	tenant_id:27,
-	landlord_id:5
+// let a = new Review();
+// a.count(5).then(e => console.log(e)).catch(e => console.log(e));
+// let r:IReview = {
+// 	content:"new review",
+// 	cleanliness_rating:3,
+// 	communication_rating:4,
+// 	maintenance_rating: 5,
+// 	availability_rating:1,
+// 	is_recommended:true,
+// 	tenant_id:27,
+// 	landlord_id:5
 
-}
+// }
 // a.view(5).then(e => console.log(e));
 // a.create(r);

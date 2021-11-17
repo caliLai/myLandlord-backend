@@ -17,6 +17,7 @@ class ProfileController {
 	constructor() {
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
+		this.router.get(`${this.path}/reviews/:id/count`, this.count);
 	}
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
@@ -30,7 +31,7 @@ class ProfileController {
 			res.end("error occurred");
 		})
 	}
-	
+	// obtain reviews for a single landlord; to be shown on their profile
 	private getLandlordReviews = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
 		this._handleReviews.view(parseInt(req.params.id))
 		.then(reviews => res.end(JSON.stringify(reviews)))
@@ -38,6 +39,13 @@ class ProfileController {
 			console.log(err)
 			res.end("Reviews unavailable");
 		})
+	}
+
+	private count = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
+		// console.log("hi");
+		this._handleReviews.count(parseInt(req.params.id))
+		.then(count => res.end(JSON.stringify(count)))
+		.catch(() => res.end("Unavailable"))
 	}
 
 }
