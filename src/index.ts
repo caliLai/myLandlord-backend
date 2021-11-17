@@ -33,6 +33,8 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
+router.set('trust proxy', 1);
+
 //------REMOVE BEFORE PRODUCTION ???------//
 router.use(cors({
 	// origin: "http://localhost:3000",
