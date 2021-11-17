@@ -16,8 +16,10 @@ class PassportConfig {
 	// private static _user:IUser;
 	private static _localStrategy:LocalStrategy;
 	private static _strategyOptions: IStrategyOptions = {
-	    usernameField: "email",
-	    passwordField: "password",
+	    usernameField: "Email",
+	    passwordField: "Password",
+	    // usernameField: "email",
+	    // passwordField: "password",
   	};
 
 	constructor() {

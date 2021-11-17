@@ -32,6 +32,8 @@ class AuthController {
 	// "custom callback" section
 	private login(req:express.Request, res:express.Response, next:express.NextFunction) {
 
+		// res.setHeader('Access-Control-Allow-Origin', 'http://localhost3000:');
+		// res.setHeader('Access-Control-Allow-Methods', 'POST');
 
 		passport.authenticate('local', function(err, user, info) {
 			// console.log(user);
