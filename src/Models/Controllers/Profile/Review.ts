@@ -89,7 +89,7 @@ export default class Review {
 			databaseConnection.query(query, params, (err, res) => {
 				if(err){reject("Something wrong with the database")}
 				if(res[0].count == 0) {
-					resolve("No reviews")
+					resolve("No")
 				}
 				resolve(res[0].count);
 			})
