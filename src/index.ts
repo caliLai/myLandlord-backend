@@ -26,7 +26,7 @@ router.use(
       httpOnly: true,
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
-      // sameSite:"none"
+      sameSite:"none"
     },
   })
 );
@@ -39,9 +39,9 @@ router.set('trust proxy', 1);
 router.use(cors({
 	// origin: "http://localhost:3000",
 	// origin: "https://idsp3-mylandlord.herokuapp.com",
-	origin: "https://my-landlord-frontend.vercel.app",
+	origin: ["https://my-landlord-frontend.vercel.app"],
 	credentials: true,
-  // optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200,
 	exposedHeaders: ['set-cookie']
 }));
 
