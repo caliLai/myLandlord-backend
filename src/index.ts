@@ -36,7 +36,8 @@ router.use(passport.session());
 //------REMOVE BEFORE PRODUCTION ???------//
 router.use(cors({
 	// origin: "http://localhost:3000",
-	origin: "https://idsp3-mylandlord.herokuapp.com",
+	// origin: "https://idsp3-mylandlord.herokuapp.com",
+	origin: "https://my-landlord-frontend-o35fmfflj-kevtrng.vercel.app/",
 	credentials: true,
   // optionsSuccessStatus: 200,
 	exposedHeaders: ['set-cookie']
@@ -49,7 +50,8 @@ router.use(function (req, res, next) {
   // Website you wish to allow to connect
   // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
-  res.setHeader('Access-Control-Allow-Origin', 'https://idsp3-mylandlord.herokuapp.com');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://idsp3-mylandlord.herokuapp.com');
+  res.setHeader('Access-Control-Allow-Origin', 'https://my-landlord-frontend-o35fmfflj-kevtrng.vercel.app/');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
