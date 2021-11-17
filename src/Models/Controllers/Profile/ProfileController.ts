@@ -6,6 +6,7 @@ import express, {Router, Request} from "express";
 import View from "./View";
 import Setup from "./Setup";
 import Review from "./Review";
+import Profile from "./Profile";
 
 class ProfileController {
 	public path = "/profile";

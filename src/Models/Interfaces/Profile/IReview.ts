@@ -1,4 +1,4 @@
-import IRating from "./IRating";
+import {IRating} from "./IRating";
 
 interface IReview {
 	review_id?:number;
@@ -14,7 +14,7 @@ interface IReview {
 	date:Date;
 	images?:Array<string>;
 
-	tendant_id:number;
+	tenant_id:number;
 	landlord_id:number;
 }
 
