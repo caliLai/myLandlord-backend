@@ -33,13 +33,13 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 //------REMOVE BEFORE PRODUCTION ???------//
-// router.use(cors({
-// 	origin: "http://localhost:3000",
-// 	// origin: "*",
-// 	credentials: true,
-//   // optionsSuccessStatus: 200,
-// 	exposedHeaders: ['set-cookie']
-// }));
+router.use(cors({
+	// origin: "http://localhost:3000",
+	origin: "https://idsp3-mylandlord.herokuapp.com",
+	credentials: true,
+  // optionsSuccessStatus: 200,
+	exposedHeaders: ['set-cookie']
+}));
 
 // router.options('*', cors({credentials: true}));
 
