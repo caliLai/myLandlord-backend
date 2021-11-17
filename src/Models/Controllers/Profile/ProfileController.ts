@@ -21,12 +21,12 @@ class ProfileController {
 
 		console.log("USER: ", req.user);
 
-		this._viewProfile.retrieve(parseInt(req.params.id))
-		.then(p => res.end(JSON.stringify(p)))
-		.catch(err => {
-			console.log(err);
-			res.end("error occurred");
-		})
+		// this._viewProfile.retrieve(parseInt(req.params.id))
+		// .then(p => res.end(JSON.stringify(p)))
+		// .catch(err => {
+		// 	console.log(err);
+		// 	res.end("error occurred");
+		// })
 	}
 }
 

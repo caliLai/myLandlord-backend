@@ -33,24 +33,27 @@ class AuthController {
 	// "custom callback" section
 	private login(req:express.Request, res:express.Response, next:express.NextFunction) {
 
+		// res.setHeader('Access-Control-Allow-Origin', 'http://localhost3000:');
+		// res.setHeader('Access-Control-Allow-Methods', 'POST');
 
 		passport.authenticate('local', function(err, user, info) {
 			// console.log(user);
 			if (err) {
 				return next(err);
 			}
-			// console.log(user);
 			if (!user) {
+				console.log("authcontroller no user found");
 				return res.end("no user");
 			}
 			req.login(user, function(err) {
 				// console.log(user);
 				if (err) {
-					// console.log("broken");
+					console.log("authController error w user")
 					return next(err);
 					// return res.end("broken");
 				}
-				return res.end("idk what happened but its not broken");
+				console.log("authController well i assumed everything worked");
+				return res.end("idk what happened but its  not broken");
 			});
 		})(req, res, next);
 	}

@@ -16,8 +16,10 @@ class PassportConfig {
 	// private static _user:IUser;
 	private static _localStrategy:LocalStrategy;
 	private static _strategyOptions: IStrategyOptions = {
-	    usernameField: "email",
-	    passwordField: "password",
+	    usernameField: "Email",
+	    passwordField: "Password",
+	    // usernameField: "email",
+	    // passwordField: "password",
   	};
 
 	constructor() {
@@ -30,7 +32,7 @@ class PassportConfig {
 			(email, password, done) => {
 				PassportConfig._login.findUserByEmail(email, password)
 					.then((user) => {
-						console.log("yep");
+						console.log("passportConfig found a user");
 						done(null, user);
 					})
 					.catch((err) => {
@@ -45,12 +47,12 @@ class PassportConfig {
 	}
 
 	private static serializeUser(user:IUser, done):void {
-		// console.log("OH MY FUCKING GOD", user.user_id);
+		console.log("PassportConfig serialise", user)
 		done(null, user.user_id);
 	}
 
 	private static deserializeUser(id:number, done) {
-		console.log("got here");
+		console.log("passportConfig deserialise user   id:",id);
 		PassportConfig._login.findUserById(id)
 			.then((user) => {
 				console.log("inside deserializeUser: ", user);
