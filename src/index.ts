@@ -37,7 +37,7 @@ router.use(passport.session());
 router.use(cors({
 	// origin: "http://localhost:3000",
 	// origin: "https://idsp3-mylandlord.herokuapp.com",
-	origin: "https://my-landlord-frontend-o35fmfflj-kevtrng.vercel.app/",
+	origin: "https://my-landlord-frontend-o35fmfflj-kevtrng.vercel.app",
 	credentials: true,
   // optionsSuccessStatus: 200,
 	exposedHeaders: ['set-cookie']
