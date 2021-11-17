@@ -47,12 +47,12 @@ class PassportConfig {
 	}
 
 	private static serializeUser(user:IUser, done):void {
-		// console.log("OH MY FUCKING GOD", user.user_id);
+		console.log("PassportConfig serialise", user)
 		done(null, user.user_id);
 	}
 
 	private static deserializeUser(id:number, done) {
-		console.log("got here");
+		console.log("passportConfig deserialise user   id:",id);
 		PassportConfig._login.findUserById(id)
 			.then((user) => {
 				console.log("inside deserializeUser: ", user);
