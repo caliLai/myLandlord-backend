@@ -82,8 +82,8 @@ router.use("/", auth.router);
 router.use("/", profile.router);
 
 router.get("/hi", (req, res) => {
-	console.log(req.user);
-	res.send("user: " + req.user);
+	// console.log(req.user);
+	res.send(JSON.stringify("user: " + req.user));
 })
 
 // sam did this:
