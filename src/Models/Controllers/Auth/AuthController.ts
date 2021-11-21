@@ -59,10 +59,7 @@ class AuthController {
 	}
 
 	private logout(req:express.Request, res:express.Response, next:express.NextFunction) {
-		// This logs the user out
 		req.logout();
-		// .redirect will then take the user to the homepage
-  		res.redirect('/');
 	}
 
 	private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
