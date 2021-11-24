@@ -24,7 +24,7 @@ class ProfileController {
 		this.router.get(`${this.path}/reviews/:id/count`, this.count);
 		this.router.post(`${this.path}/reviews/create`, this.create);
 
-		this.router.post(`${this.path}/property/createprop`,this.createprop);
+		this.router.post(`${this.path}/property/create`,this.createprop);
 	}
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
@@ -78,7 +78,7 @@ class ProfileController {
 	}
 
 	private createprop = async (req:express.Request, res:express.Response) => {
-		let u = req.user as IUser;
+
 		let newProperty:IProperty = {
 			address: req.body.address,
 			city: req.body.city,

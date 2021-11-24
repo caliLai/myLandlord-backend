@@ -41,7 +41,6 @@ router.use(cors({
 	// origin: "http://localhost:3000",
 	// origin: "https://idsp3-mylandlord.herokuapp.com",
 	origin: ["https://my-landlord-frontend.vercel.app"],
-	// change to false when testing locally:
 	credentials: true,
 	optionsSuccessStatus: 200,
 	exposedHeaders: ['set-cookie']
