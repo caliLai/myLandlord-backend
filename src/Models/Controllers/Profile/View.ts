@@ -10,7 +10,7 @@ export default class View {
 	public async retrieve(userId:number):Promise<IProfile> {
 		return new Promise((resolve, reject) => {
 
-			let query:string = "SELECT firstname, lastname, email, is_landlord, profile_image FROM users WHERE user_id = :userId";
+			let query:string = "SELECT user_id, firstname, lastname, email, is_landlord, profile_image FROM users WHERE user_id = :userId";
 			let params = {userId:userId};
 
 			databaseConnection.query(query, params, (err,res) => {

@@ -36,7 +36,7 @@ class ProfileController {
 
 	// create a review
 	private create = async(req:express.Request, res:express.Response) => {
-
+	
 		let u = req.user as IUser;
 
 		let newReview:IReview = {
