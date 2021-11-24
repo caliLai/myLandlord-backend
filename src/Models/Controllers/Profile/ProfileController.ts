@@ -79,11 +79,14 @@ class ProfileController {
 
 	private createprop = async (req:express.Request, res:express.Response) => {
 
+		let u = req.user as IUser;
+		
 		let newProperty:IProperty = {
 			address: req.body.address,
 			city: req.body.city,
 			description: req.body.description,
-			landlord_id: req.body.landlord_id
+			// use the current user (who MUST be a landlord)'s id:
+			landlord_id: u.user_id
 		}
 
 		this._newProperty.create(newProperty)
