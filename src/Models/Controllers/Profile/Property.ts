@@ -9,22 +9,24 @@ export default class Property{
 
     public create(property:IProperty):Promise<string> {
         let query:string = `
-        INSEST INTO property
-        (content,
-            address
-            city
-            description
+        INSERT INTO property
+        (
+            address,
+            city,
+            description,
             landlord_id
-            )
+        )
         VALUES
-            (:address
+            (:address,
             :city,
-            :description
+            :description,
+            :landlord_id
             );`
         let params = {
             address:property.address,
             city:property.city,
-            description:property.description
+            description:property.description,
+            landlord_id:property.landlord_id
         };
         return new Promise((resolve, reject) => {
 
