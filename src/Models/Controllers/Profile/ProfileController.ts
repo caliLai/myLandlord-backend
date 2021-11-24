@@ -2,11 +2,13 @@
 
 import IUser from "../../Interfaces/Profile/IProfile";
 import IReview from "../../Interfaces/Profile/IReview";
+import IProperty from "../../Interfaces/Profile/IProperty";
 
 import express, {Router, Request} from "express";
 import View from "./View";
 import Setup from "./Setup";
 import Review from "./Review";
+import Property from "./Property";
 
 class ProfileController {
 	public path = "/profile";
@@ -14,12 +16,15 @@ class ProfileController {
 	private _viewProfile = new View();
 	private _setupProfile = new Setup();
 	private _handleReviews = new Review();
+	private _newProperty = new Property();
 
 	constructor() {
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
 		this.router.get(`${this.path}/reviews/:id/count`, this.count);
 		this.router.post(`${this.path}/reviews/create`, this.create);
+
+		this.router.post(`${this.path}/property/createprop`,this.createprop);
 	}
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
@@ -70,6 +75,20 @@ class ProfileController {
 		this._handleReviews.count(parseInt(req.params.id))
 		.then(count => res.end(JSON.stringify(count)))
 		.catch(() => res.end("Unavailable"))
+	}
+
+	private createprop = async (req:express.Request, res:express.Response) => {
+		let u = req.user as IUser;
+		let newProperty:IProperty = {
+			address: req.body.address,
+			city: req.body.city,
+			description: req.body.description,
+			landlord_id: req.body.landlord_id
+		}
+
+		this._newProperty.create(newProperty)
+		.then(m => res.end(m))
+		.catch(() => res.end("error occurred"));
 	}
 
 }
