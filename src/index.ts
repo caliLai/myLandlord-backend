@@ -86,7 +86,7 @@ router.use("/", profile.router);
 router.use("/", browse.router);
 
 router.get("/hi", (req, res) => {
-	console.log(req.user);
+	// console.log(req.user);
 	req.user ? res.end(JSON.stringify(true)) : res.end(JSON.stringify(false));
 })
 
