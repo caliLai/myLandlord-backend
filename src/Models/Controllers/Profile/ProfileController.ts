@@ -19,7 +19,7 @@ class ProfileController {
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
 		this.router.get(`${this.path}/reviews/:id/count`, this.count);
-		this.router.get(`${this.path}/reviews/create`, this.create);
+		this.router.post(`${this.path}/reviews/create`, this.create);
 	}
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
