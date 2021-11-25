@@ -60,6 +60,7 @@ class AuthController {
 
 	private logout(req:express.Request, res:express.Response, next:express.NextFunction) {
 		req.logout();
+		res.end();
 	}
 
 	private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
