@@ -29,14 +29,14 @@ export default class Login {
 				if(err){reject("Something's wrong with MySQL")}
 				// resolve(results[0]);
 				if(!res[0]) {
-					console.log("login.ts  no user found");
+					// console.log("login.ts  no user found");
 					reject("Username or password incorrect");
 				} else {
 					if(res[0].password === password) {
-						console.log("login.ts user passwords match");
+						// console.log("login.ts user passwords match");
 						resolve(res[0] as IUser);
 					} else {
-						console.log("login.ts passwords do not match");
+						// console.log("login.ts passwords do not match");
 						reject("Username or password incorrect");
 					}
 				}
