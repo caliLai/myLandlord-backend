@@ -25,7 +25,7 @@ class AuthController {
 		// new PassportConfig();
 		this.router.post(`${this.path}/login`, this.login);
 		this.router.post(`${this.path}/register`, this.register);
-		this.router.post(`${this.path}/logout` , this.logout);
+		this.router.get(`${this.path}/logout` , this.logout);
 	}
 
 	// callback function for authenticating login
