@@ -25,9 +25,9 @@ router.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
-    //   sameSite:"none"
+      sameSite:"none"
     },
   })
 );
@@ -38,9 +38,9 @@ router.set('trust proxy', 1);
 
 //------REMOVE BEFORE PRODUCTION ???------//
 router.use(cors({
-	origin: "http://localhost:3000",
+	// origin: "http://localhost:3000",
 	// origin: "https://idsp3-mylandlord.herokuapp.com",
-	// origin: ["https://my-landlord-frontend.vercel.app"],
+	origin: ["https://my-landlord-frontend.vercel.app"],
 	credentials: true,
 	optionsSuccessStatus: 200,
 	exposedHeaders: ['set-cookie']
@@ -51,10 +51,10 @@ router.use(cors({
 router.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
   // res.setHeader('Access-Control-Allow-Origin', 'https://idsp3-mylandlord.herokuapp.com');
-//   res.setHeader('Access-Control-Allow-Origin', 'https://my-landlord-frontend.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'https://my-landlord-frontend.vercel.app');
 // 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
