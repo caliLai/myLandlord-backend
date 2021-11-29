@@ -8,6 +8,7 @@ import PassportConfig from  "./Models/Controllers/Auth/PassportConfig";
 import AuthController from "./Models/Controllers/Auth/AuthController";
 import ProfileController from "./Models/Controllers/Profile/ProfileController";
 import BrowseController from "./Models/Controllers/Browse/BrowseController";
+import IUser from "./Models/Interfaces/IUser";
 
 // import path from "path";
 // import databaseConnection from "./database/database";
@@ -84,9 +85,17 @@ router.use("/", auth.router);
 router.use("/", profile.router);
 router.use("/", browse.router);
 
+//---- this is awfully messy but I'm getting desperate ----//
 router.get("/hi", (req, res) => {
 	// console.log(req.user);
 	req.user ? res.end(JSON.stringify(true)) : res.end(JSON.stringify(false));
+})
+router.get("/hey", (req, res) => {
+	// console.log(req.user);
+	let u:IUser;
+	req.user ? u = req.user as IUser : null ;
+	console.log(u.is_landlord == false);
+	u.is_landlord ? res.end(JSON.stringify(true)) : res.end(JSON.stringify(false));
 })
 
 
