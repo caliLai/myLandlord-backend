@@ -96,7 +96,7 @@ export default class Review {
 			})
 		})
 	}
-
+	// count how many reviews have been written by a tenant
 	public countWritten(id:number):Promise<string|number> {
 		let query:string = `
 		SELECT COUNT(*) AS count

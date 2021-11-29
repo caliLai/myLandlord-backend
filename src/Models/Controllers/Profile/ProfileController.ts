@@ -22,6 +22,7 @@ class ProfileController {
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
 		this.router.get(`${this.path}/reviews/:id/count`, this.count);
+		this.router.get(`${this.path}/reviews/:id/countWritten`, this.countWritten);
 		this.router.post(`${this.path}/reviews/create`, this.create);
 
 		this.router.post(`${this.path}/property/create`,this.createprop);
@@ -73,6 +74,12 @@ class ProfileController {
 	private count = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
 		// console.log("hi");
 		this._handleReviews.count(parseInt(req.params.id))
+		.then(count => res.end(JSON.stringify(count)))
+		.catch(() => res.end("Unavailable"))
+	}
+	// count how many reviews a tenant has
+	private countWritten = async (req:express.Request, res:express.Response) => {
+		this._handleReviews.countWritten(parseInt(req.params.id))
 		.then(count => res.end(JSON.stringify(count)))
 		.catch(() => res.end("Unavailable"))
 	}
