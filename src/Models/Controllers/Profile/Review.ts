@@ -77,7 +77,8 @@ export default class Review {
 			})
 		})
 	}
-
+	
+	// get number of reviews for a landlord
 	public count(id:number):Promise<string|number> {
 		let query:string = `
 		SELECT COUNT(*) as count
@@ -90,6 +91,24 @@ export default class Review {
 				if(err){reject("Something wrong with the database")}
 				if(res[0].count == 0) {
 					resolve("No")
+				}
+				resolve(res[0].count);
+			})
+		})
+	}
+
+	public countWritten(id:number):Promise<string|number> {
+		let query:string = `
+		SELECT COUNT(*) AS count
+		FROM reviews
+		WHERE tenant_id = :id`;
+		let params = {id:id};
+
+		return new Promise((resolve, reject) => {
+			databaseConnection.query(query, params, (err, res) => {
+				err ? reject("Something is wrong with the database") : null;
+				if(res[0].count == 0) {
+					resolve ("No");
 				}
 				resolve(res[0].count);
 			})
