@@ -69,9 +69,27 @@ export default class Review {
 		
 		return new Promise((resolve, reject) => {
 			databaseConnection.query(query, params, (err, res) => {
-				if(err){reject("Something' wrong with MySQL")}
+				if(err){reject("Something's wrong with MySQL")}
 				if(!res) {
-					reject("fuck u");
+					reject("F");
+				}
+				resolve(res as Array<IReview>);
+			})
+		})
+	}
+
+	public viewWritten(tenant:number):Promise<Array<IReview>> {
+		let query:string = 
+		`SELECT reviews.*, users.firstname, users.lastname 
+		FROM reviews
+		RIGHT JOIN users on users.user_id = reviews.landlord_id
+		WHERE tenant_id = :tenant`;
+		let params={tenant:tenant}
+		return new Promise((resolve, reject) => {
+			databaseConnection.query(query, params, (err, res) => {
+				err ? reject("Something's wrong with MySQL") : null;
+				if(!res) {
+					reject("What the hell happened");
 				}
 				resolve(res as Array<IReview>);
 			})
