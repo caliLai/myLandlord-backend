@@ -43,6 +43,8 @@ class ProfileController {
 
 	// create a review
 	private create = async(req:express.Request, res:express.Response) => {
+
+		console.log(req.body);
 	
 		let u = req.user as IUser;
 
