@@ -27,7 +27,20 @@ class ProfileController {
 		this.router.post(`${this.path}/reviews/create`, this.create);
 
 		this.router.post(`${this.path}/property/create`,this.createprop);
+
+		this.router.put(`${this.path}/update`, this.update);
 	}
+	// update ur profile
+	private update = async (req:express.Request, res:express.Response) => {
+		// console.log(req.body);
+		let currentUser = req.user as IUser;
+		let newChanges = {...req.body}
+		// this._setupProfile.update(newChanges, 15)
+		this._setupProfile.update(newChanges, currentUser.user_id)
+		.then(() => res.end("updated"))
+		.catch(() => res.end("Error"))
+	}
+
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
 
