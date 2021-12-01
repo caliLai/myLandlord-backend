@@ -20,6 +20,7 @@ class ProfileController {
 
 	constructor() {
 		this.router.get(`${this.path}/whoami`, this.whoami);
+		this.router.get(`${this.path}/me/:id`, this.myinfo);
 
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
@@ -34,7 +35,7 @@ class ProfileController {
 	}
 	// update ur profile
 	private update = async (req:express.Request, res:express.Response) => {
-		// console.log(req.body);
+		console.log(req.user);
 		let currentUser = req.user as IUser;
 		let newChanges = {...req.body}
 		// this._setupProfile.update(newChanges, 15)
@@ -44,9 +45,21 @@ class ProfileController {
 	}
 	// this is stupid
 	private whoami = async(req:express.Request, res:express.Response) => {
-		console.log(req.user);
+		// console.log(req.user);
 		res.end(JSON.stringify(req.user as IUser));
 		// res.end("hi")
+	}
+	// not only is this stupid, its dangerous:
+	// im so sorry whoever is reading this code but listen man theres like
+	// 2 days until I present this thing and like
+	// everything that could've possibly went wrong in this project
+	// went wrong and now here I am at 2:25am desperately trying to 
+	// get things to look like they work.
+	// no one use this for real oh my god 
+	private myinfo = async(req:express.Request, res:express.Response) => {
+		this._viewProfile.myself(parseInt(req.params.id))
+		.then(data => res.end(JSON.stringify(data)))
+		.catch(() => res.end())
 	}
 
 	//viewing a profile that (ideally) isn't your own

@@ -86,15 +86,26 @@ router.use("/", profile.router);
 router.use("/", browse.router);
 
 //---- this is awfully messy but I'm getting desperate ----//
+// to check if user existing
 router.get("/hi", (req, res) => {
 	// console.log(req.user);
 	req.user ? res.end(JSON.stringify(true)) : res.end(JSON.stringify(false));
 })
+
+// to check user type
 router.get("/hey", (req, res) => {
 	// console.log(req.user);
 	let u:IUser;
-	req.user ? u = req.user as IUser : null ;
+	req.user ? u = req.user as IUser : res.end() ;
 	u.is_landlord ? res.end(JSON.stringify(true)) : res.end(JSON.stringify(false));
+	// let {is_landlord, user_id} = u;
+	// res.end(JSON.stringify({is_landlord, user_id}));
+})
+router.get("/id", (req, res) => {
+	// console.log(req.user);
+	let u:IUser;
+	req.user ? u = req.user as IUser : res.end() ;
+	res.end(JSON.stringify(u.user_id));
 })
 
 

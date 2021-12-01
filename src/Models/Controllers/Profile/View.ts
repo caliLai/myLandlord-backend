@@ -26,4 +26,18 @@ export default class View {
 		})
 
 	}
+
+	public async myself(userId:number):Promise<IProfile> {
+		let query:String = `SELECT * FROM users WHERE user_id = :id`;
+		let params = {id:userId};
+		return new Promise((resolve, reject) => {
+			databaseConnection.query(query, params, (err, res) => {
+				err ? reject("fuck this") : null;
+				if(!res[0]) {
+					reject("this is so convoluted");
+				}
+				resolve(res[0]);
+			})
+		})
+	}
 }
