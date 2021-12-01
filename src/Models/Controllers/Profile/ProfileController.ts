@@ -19,6 +19,8 @@ class ProfileController {
 	private _newProperty = new Property();
 
 	constructor() {
+		this.router.get(`${this.path}/whoami`, this.whoami);
+
 		this.router.get(`${this.path}/view/:id`, this.view);
 		this.router.get(`${this.path}/reviews/:id/getAll`, this.getLandlordReviews);
 		this.router.get(`${this.path}/reviews/:id/getAllWritten`, this.getTenantReviews);
@@ -40,11 +42,15 @@ class ProfileController {
 		.then(() => res.end("updated"))
 		.catch(() => res.end("Error"))
 	}
+	// this is stupid
+	private whoami = async(req:express.Request, res:express.Response) => {
+		console.log(req.user);
+		res.end(JSON.stringify(req.user as IUser));
+		// res.end("hi")
+	}
 
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
-
-		// console.log("USER: ", req.user);
 
 		this._viewProfile.retrieve(parseInt(req.params.id))
 		.then(p => res.end(JSON.stringify(p)))
