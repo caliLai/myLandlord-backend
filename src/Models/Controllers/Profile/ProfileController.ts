@@ -9,6 +9,7 @@ import View from "./View";
 import Setup from "./Setup";
 import Review from "./Review";
 import Property from "./Property";
+import { parse } from "path/posix";
 
 class ProfileController {
 	public path = "/profile";
@@ -27,6 +28,7 @@ class ProfileController {
 		this.router.post(`${this.path}/reviews/create`, this.create);
 
 		this.router.post(`${this.path}/property/create`,this.createprop);
+		this.router.get(`${this.path}/property/:id/getAll`, this.getLandlordProperty);
 	}
 	//viewing a profile that (ideally) isn't your own
 	private view = async (req:express.Request, res:express.Response, next:express.NextFunction) => {
@@ -60,6 +62,15 @@ class ProfileController {
 		this._handleReviews.create(newReview)
 		.then(m => res.end(m))
 		.catch(() => res.end("error occurred"));
+	}
+
+	private getLandlordProperty = (req:express.Request, res:express.Response, next:express.NextFunction) => {
+		this._newProperty.view(parseInt(req.params.id))
+		.then(property => res.end(JSON.stringify(property)))
+		.catch(err => {
+			console.log(err)
+			res.end("Property not available");
+		})
 	}
 
 	// obtain reviews for a single landlord; to be shown on their profile
