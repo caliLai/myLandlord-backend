@@ -39,11 +39,9 @@ export default class Property{
 		})
     }
 
-    public view(landlord:number):Promise<Array<IProperty>>{
+    public view(landlord:number):Promise<Array<IProperty|string>>{
         let query: string = 
-        `SELECT property.*, users.address, users.city
-        FROM property
-        RIGHT JOIN users on users.user_id = property.landlord_id
+        `SELECT * FROM property
         WHERE landlord_id = :landlord`;
         let params = {landlord:landlord};
 
