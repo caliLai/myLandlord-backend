@@ -2,8 +2,6 @@
     utilities for making a properties posting
 */
 
-import { rejects } from "assert";
-import { resolve } from "path/posix";
 import databaseConnection from "../../../database/database";
 import IProperty from "../../Interfaces/Profile/IProperty";
 

@@ -9,7 +9,6 @@ import View from "./View";
 import Setup from "./Setup";
 import Review from "./Review";
 import Property from "./Property";
-import { parse } from "path/posix";
 
 class ProfileController {
 	public path = "/profile";
