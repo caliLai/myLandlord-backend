@@ -36,4 +36,22 @@ export default class Property{
 			})
 		})
     }
+
+    public view(landlord:number):Promise<Array<IProperty|string>>{
+        let query: string = 
+        `SELECT * FROM property
+        WHERE landlord_id = :landlord`;
+        let params = {landlord:landlord};
+
+        return new Promise((resolve, reject) => {
+            databaseConnection.query(query, params, (err, res) =>{
+				if(err){
+                    reject("Something's wrong with MySQL")}
+				if(!res) {
+					reject(":O");
+				}
+				resolve(res as Array<IProperty>);
+            })
+        })
+    }
 }
