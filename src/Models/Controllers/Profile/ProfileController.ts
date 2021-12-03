@@ -151,7 +151,7 @@ class ProfileController {
 		}
 
 		this._newProperty.create(newProperty)
-		.then(m => res.end(m))
+		.then(() => res.end(JSON.stringify(u.user_id)))
 		.catch(() => res.end("error occurred"));
 	}
 
